@@ -95,17 +95,16 @@ class Scene {
         break;
       case "timer":
         if (!this.playing) break;
-          this.update();
+        this.update();
 
         for (let i = 0; i < this.hierarchy.length; i++) {
           var gameObject = this.hierarchy[i];
           let components = gameObject.components;
           for (let j = 0; j < components.length; j++) {
             let component = components[j];
-            if (component instanceof Behavior || component instanceof RigidBodyComponent) {
-              if (typeof component.update === "function")
-                component.update(gameObject);
-            }
+            if (typeof component.update === "function")
+              component.update(gameObject);
+
           }
 
         }
@@ -324,12 +323,22 @@ class Scene {
     }
     return toReturn;
   }
-  instantiate(gameObject, position, rotation){
+  instantiate(gameObject, position, rotation) {
     this.hierarchy.push(gameObject);
-    if(position)
+    if (position)
       gameObject.transform.position = position;
-    if(rotation)
+    if (rotation)
       gameObject.transform.rotation = rotation;
+  }
+  destroy(gameObject) {
+    this.hierarchy.splice(this.hierarchy.indexOf(gameObject), 1);
+  }
+  getGameObjectByName(name) {
+    for (var i = 0; i < this.hierarchy.length; i++) {
+      var gameObject = this.hierarchy[i];
+      if (gameObject.name == name)
+        return gameObject;
+    }
   }
 }
 

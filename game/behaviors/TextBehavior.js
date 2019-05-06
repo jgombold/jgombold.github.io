@@ -9,6 +9,8 @@ class TextBehavior extends Behavior{
   update(gameObject){
     this.frames++;
     let guiText = gameObject.getComponent(GUITextComponent);
-    guiText.text = "Current frame: " + this.frames;
+    //guiText.text = "Score: " +  SceneManager.currentScene.getGameObjectByName("Ball").getComponent(BallBehavior).score;
+    guiText.text = "Green Score: " +  uScore;;
+
   }
 }

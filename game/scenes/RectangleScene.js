@@ -6,38 +6,66 @@ class RectangleScene extends Scene {
   start() {
     
 
-    var camera2 = new Camera(20, "green");
-    camera2.transform.position = new Vector2(1/2,1/2);
-    camera2.getComponent(CameraComponent).screenUL = new Vector2(.1, .1);
-    camera2.getComponent(CameraComponent).size = new Vector2(.1, .1);
-    camera2.target = "miniMap";
-    this.hierarchy.push(camera2);
-
-    this.camera = new Camera(20, "azure");// Add a camera game object
+    
+    this.camera = new Camera(40, "azure");// Add a camera game object
     this.camera.transform.position = new Vector2(1 / 2, 1 / 2); //Set its position
     this.hierarchy.push(this.camera);
 
+    var guiText = new GameObject("GUI Text");
+    var textComponent = new GUITextComponent("Physics Test Game.", "black", "30px Arial");
+    textComponent.justify = "left";
+    guiText.components.push(textComponent);
+    guiText.rendererGUI = textComponent;
+    guiText.transform.position = new Vector2(100, 130);
+    var textBehavior = new TextBehavior();
+    guiText.components.push(textBehavior);
+    this.hierarchy.push(guiText);
+
+    var guiText = new GameObject("GUI Text");
+    var textComponent = new GUITextComponent("Physics Test Game.", "black", "30px Arial");
+    textComponent.justify = "left";
+    guiText.components.push(textComponent);
+    guiText.rendererGUI = textComponent;
+    guiText.transform.position = new Vector2(100, 100);
+    var textBehavior = new TextBehavior4();
+    guiText.components.push(textBehavior);
+    this.hierarchy.push(guiText);
+
+    var guiText = new GameObject("GUI Text");
+    var textComponent = new GUITextComponent("Physics Test Game.", "black", "30px Arial");
+    textComponent.justify = "left";
+    guiText.components.push(textComponent);
+    guiText.rendererGUI = textComponent;
+    guiText.transform.position = new Vector2(100, 70);
+    var textBehavior = new TextBehavior3();
+    guiText.components.push(textBehavior);
+    this.hierarchy.push(guiText);
+
+    var guiText = new GameObject("GUI Text");
+    var textComponent = new GUITextComponent("Physics Test Game.", "black", "30px Arial");
+    textComponent.justify = "left";
+    guiText.components.push(textComponent);
+    guiText.rendererGUI = textComponent;
+    guiText.transform.position = new Vector2(100, 40);
+    var textBehavior = new TextBehavior2();
+    guiText.components.push(textBehavior);
+    this.hierarchy.push(guiText);
+    
+
     WallPrefab(this);
+    PaddlePrefab(this);
 
-    var wall = new GameObject("Rotating Wall");
-    wall.transform.position = new Vector2(4,4);
-    wall.transform.rotation = 0;
-    var wallGeometry = new AxisAlignedRectangle(4, 4);
-    wall.components.push(new GeometryComponent(wallGeometry));
-    var wallRenderer = new GeometryRendererComponent("black", wallGeometry);
-    wall.components.push(wallRenderer);
-    wall.renderer = wallRenderer;
-    wall.components.push(new Collider(wallGeometry));
-    //wall.components.push(new RotatorBehavior());
-    this.hierarchy.push(wall);
+  
+    //this.instantiate(Prefabs.getPrefabByName("MainPlayer"), new Vector2(0,-4));
+    this.instantiate(Prefabs.getPrefabByName("Spice"), new Vector2(4, -4));
+    this.instantiate(Prefabs.getPrefabByName("Ball"), new Vector2(0, 0));
 
-   
+    //this.instantiate(Prefabs.getPrefabByName("Baddie"), new Vector2(0, 4));
 
-    //BallPrefab(this, new Vector2(0,0));
-    var ball = Prefabs.getPrefabByName("Ball");
-    this.instantiate(ball, new Vector2(0,0))
-
+    
+    //var emptyObject = new GameObject("GameController");
+    //emptyObject.components.push(new GameControllerBehavior());
+    //this.hierarchy.push(emptyObject);
     NextPrefab(this);
-
   }
 }

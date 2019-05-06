@@ -13,18 +13,16 @@ class TitleScene extends Scene{
     this.hierarchy.push(this.camera);
 
     var guiText = new GameObject("GUI Text");
-    var textComponent = new GUITextComponent("Physics Test Game.", "black", "30px Arial");
+    var textComponent = new GUITextComponent("My Game", "black", "30px Arial");
     textComponent.justify = "left";
     guiText.components.push(textComponent);
     guiText.rendererGUI = textComponent;
     guiText.transform.position = new Vector2(100, 100);
-    var textBehavior = new TextBehavior();
-    guiText.components.push(textBehavior);
-
+    
     this.hierarchy.push(guiText);
 
     guiText = new GameObject("GUI Text 2");
-    textComponent = new GUITextComponent("Push space to start and move between scenes.", "gray", "30px Arial");
+    textComponent = new GUITextComponent("Requires four players.", "gray", "30px Arial");
     textComponent.justify = "left";
     guiText.components.push(textComponent);
     guiText.rendererGUI = textComponent;
